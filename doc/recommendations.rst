@@ -15,8 +15,6 @@ Working with this Script
 4. Always make sure to redirect your standard output to an appropriate file by using the output operator (">"). This way, it ensures that no vital data is lost and
    we can follow your workflow.
 
-5. Prepare an LibreOffice sheet (or similar) with a collection of your results. Checking them this way is much easier for us.
-
 Trouble Shooting
 ----------------
 

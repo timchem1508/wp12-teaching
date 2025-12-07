@@ -10,3 +10,4 @@ This is the guide to the Grimme part of the practical course for WP12.
    recommendations
    setup
    ex
+   report
