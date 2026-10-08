@@ -24,19 +24,13 @@ The following programs are going to be used:
 +====================+===================================================+
 | PSI4               | ``psi4``                                          |
 +--------------------+---------------------------------------------------+
-| TURBOMOLE 7.6      | ``ridft, ricc2``                                  |
+| TURBOMOLE 8.0      | ``ridft, ricc2``                                  |
 +--------------------+---------------------------------------------------+
-| COSMOtherm         | ``cosmosolv_prak`` (script that calls COSMOtherm) |
+| COSMOtherm 19      | ``cosmosolv_prak`` (script that calls COSMOtherm) |
 +--------------------+---------------------------------------------------+
-| CRYSTAL14          | ``crystal_interface``                             |
+| xTB 6.7.1          | ``xtb``                                           |
 +--------------------+---------------------------------------------------+
-| VASP5.4            | `used via crystal interface`                      |
-+--------------------+---------------------------------------------------+
-| DFTB3              | `used via crystal interface`                      |
-+--------------------+---------------------------------------------------+
-| xTB (WP12 version) | ``xtb_prak``                                      |
-+--------------------+---------------------------------------------------+
-| gCP                | ``gcp``                                           |
+| gCP 2.01           | ``gcp``                                           |
 +--------------------+---------------------------------------------------+
 | DFTD3              | ``dftd3``                                         |
 +--------------------+---------------------------------------------------+
@@ -97,11 +91,11 @@ GFN-xTB, gCP, TURBOMOLE, and DFTD3 can be made available via the following comma
 
 .. code-block:: none
 
-   module load xtb/prak
+   module load xtb
 
 .. code-block:: none
 
-   module load gcp
+   module load gcp/2.01
 
 .. code-block:: none
 
@@ -134,7 +128,7 @@ GFN-xTB
 
 .. code-block:: none
 
-   xtb_prak <coord_input> [options]
+   xtb <coord_input> [options]
 
 where ``<coord_input>`` is a valid ﬁle of ``TM`` or ``Xmol`` format.
 
@@ -150,39 +144,3 @@ Please note that after the optimization the input structure, e.g., the coord ﬁ
 overwritten and will be on the ﬁle ``xtbopt.coord``. You will have to use this ﬁle for the
 calculation of the Hessian. If you encounter significant imaginary frequencies, try to optimize the created xtbhess file e.g. ``xtbhess.coord`` and use the optimized structure for another Hessian calculation.
 
-Calculating the k-Grid
-~~~~~~~~~~~~~~~~~~~~~~
-
-To set the k points the ``SHRINK`` block has to be modiﬁed in the input ﬁle. The k points
-are calculated diﬀerently depending on whether ``CRYSTAL`` or ``VASP`` is used.
-
-.. math::
-
-   VASP: \ \ \ \kappa_{ij} = \frac{2i-s_j-1}{2s_j} \\\\
-   CRYSTAL: \ \ \ \kappa_{ij} = \frac{2i-s_j}{2s_j} 
-
-where *s*\ :sub:`j` are the shrinking factors in reciprocal space.
-Further information is given in the lecture (solid state part).
-
-You can calculate the shrinking parameter based on the `k-point density` *ρ*\ :sub:`k` [Bohr\ :sup:`-1`]
-and the unit cell vectors a ⃗\ :sub:`1` , a ⃗\ :sub:`2` and a ⃗\ :sub:`3` (e.g. taken from the ``fort.34`` ﬁle):
-
-.. math::
-
-   s_i \approx \frac{1}{|\vec{a}_i|*\rho_\kappa}
-
-where *s*\ :sub:`i` are the corresponding dimensionless SHRINK parameter, rounded to the next
-non-zero integer. Note that the a ⃗\ :sub:`i` in fort.34 are in Ångström.
-When converting a ``.cif`` file with ``cif2crystal`` you will receive the k-mesh density and the
-SHRINK parameters corrsponding to the structure automatically.
-
-Please note that for ``cif2crystal`` to work as intended, it expects a working ``python`` interpreter which we provide for you in a suitable ``conda`` environment that you can activate as follows.
-
-.. code-block:: none
-
-   module load conda
-.. code-block:: none
-
-   conda activate py27
-
-You should now see a ``(py27)`` appear in the lower left corner as part of your shell prompt.  
