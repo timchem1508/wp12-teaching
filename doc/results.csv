@@ -1,0 +1,115 @@
+Ex1,,
+,,
+,,
+Ar2,,
+HF-SAPT,,
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+DFT-SAPT,,
+GRAC,,Hartree
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+,,
+(H2O)2,,
+HF-SAPT,,
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+DFT-SAPT,,
+GRAC,,Hartree
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+,,
+(uracil)2,,
+HF-SAPT,,
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+DFT-SAPT,,
+GRAC,,Hartree
+Epol,,kcal/mol
+Eexch,,kcal/mol
+"Eind,resp",,kcal/mol
+"Eexch-ind,resp",,kcal/mol
+Edisp,,kcal/mol
+Eexch-disp,,kcal/mol
+,,
+,,
+Ex2,,
+,,
+,,
+Ar monomer,,
+HF/aug-cc-pVTZ ,,Hartree
+HF/aug-cc-pVQZ ,,Hartree
+MP2/aug-cc-pVTZ correlation energy,,Hartree
+MP2/aug-cc-pVQZ correlation energy,,Hartree
+CCSD(T)/aug-cc-pVTZ correlation energy,,Hartree
+,,
+Ar dimer,,
+HF/aug-cc-pVTZ ,,Hartree
+HF/aug-cc-pVQZ ,,Hartree
+MP2/aug-cc-pVTZ correlation energy,,Hartree
+MP2/aug-cc-pVQZ correlation energy,,Hartree
+CCSD(T)/aug-cc-pVTZ correlation energy,,Hartree
+,,
+H2O monomer,,
+HF/aug-cc-pVTZ ,,Hartree
+HF/aug-cc-pVQZ ,,Hartree
+MP2/aug-cc-pVTZ correlation energy,,Hartree
+MP2/aug-cc-pVQZ correlation energy,,Hartree
+CCSD(T)/aug-cc-pVTZ correlation energy,,Hartree
+,,
+H2O dimer,,
+HF/aug-cc-pVTZ ,,Hartree
+HF/aug-cc-pVQZ ,,Hartree
+MP2/aug-cc-pVTZ correlation energy,,Hartree
+MP2/aug-cc-pVQZ correlation energy,,Hartree
+CCSD(T)/aug-cc-pVTZ correlation energy,,Hartree
+,,
+,,
+Ex3,,
+,,
+,,
+Host,,
+SP energy (TPSS/def-TZVP),,Hartree
+Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
+CP correction energy (gcp),,Hartree
+delta G vibrational (RRHO: GFN-xTB),,Hartree
+COSMO-RS solvation energy,,Hartree
+,,
+Guest,,
+SP energy (TPSS/def-TZVP),,Hartree
+Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
+CP correction energy (gcp),,Hartree
+delta G vibrational (RRHO: GFN-xTB),,Hartree
+COSMO-RS solvation energy,,Hartree
+,,
+Complex,,
+SP energy (TPSS/def-TZVP),,Hartree
+Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
+CP correction energy (gcp),,Hartree
+delta G vibrational (RRHO: GFN-xTB),,Hartree
+COSMO-RS solvation energy,,Hartree
