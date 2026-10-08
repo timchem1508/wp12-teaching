@@ -11,7 +11,7 @@ Introduction
 
 Some general remarks at the beginning: There will be an accompanying `GitHub Repository <https://github.com/grimme-lab/wp12-teaching>`_ to this course.
 In this Repository, you can find all provided input files and geometries necessary to work on the tasks.
-In addition, you can also find the manuals of the program packages TURBOMOLE7.6, COSMOtherm, VASP5.4, and CRYTSAL14.
+In addition, you can also find the manuals of the program packages TURBOMOLE8.0 and COSMOtherm.
 The `PSI4 documentation <https://psicode.org/psi4manual/master/index.html>`_ is available online.
 
 Most of the other scripts give some general options if started via 
@@ -23,6 +23,12 @@ Most of the other scripts give some general options if started via
 .. important::
 
    Use only your ``/tmp1/$USER/`` folder for all calculations!
+
+.. important::
+
+	When all exercises are completed, you must fill in the results.csv file with the calculated raw data. You can easily do this using your preferred spreadsheet editor. Then, send this file to your tutors.
+	Please provide data in the units specified in the file (6 decimal places for Hartree values and up to 4 decimal places for kcal/mol values). Do not change the structure of the file, and include only the raw data used or obtained from the calculations.
+	Once this data has been reviewed by the tutors and no errors are found, you may begin the post-processing calculations and prepare the practice report.
 
 
 Noncovalent Interactions and Organic Solids
@@ -55,7 +61,7 @@ The SAPT ansatz gives the ﬁrst and second-order complexation energies based on
 
    .. admonition:: Technical procedure
 
-      For the DFT-SAPT calculation, you need the difference between the experimental and calculated ionization energies of the monomers. You can find experimental ionization energies in the NIST database. 
+      For the DFT-SAPT calculation, you need the difference between the experimental and calculated ionization energies of the monomers. You can find experimental ionization energies in the NIST database (for the uracil use the value of 9.53 eV). 
       Modify the provided input ﬁles to match your system. Modify the HF input file to choose the appropriate SAPT method for the above equation. Start the program by invoking
 
       .. code-block:: none
@@ -199,104 +205,3 @@ explicitly on the temperature and solvent.
       (see Section :ref:`COSMOtherm`).
 
 
-.. _Organic solids:
-
-Organic solids
-~~~~~~~~~~~~~~
-
-.. admonition:: Exercise 1.4
-
-   Calculate the sublimation enthalpy of the urea crystal at room temperature.
-
-**Approach**
-
-The sublimation enthalpy :math:`\Delta H_{sub}` at temperature :math:`T` is given by the enthalpy
-difference of the two phases:
-
-.. math::
-
-	\Delta H_{sub} = H^{g} - H^{s}
-
-.. math::
-
-	H^{i} = E_{el}^{i} + E_{trans}^{i} + E_{rot}^{i} + E_{vib}^{i} + pV
-
-The gas phase is thereby denoted with the index :math:`g`, the solid phase with :math:`s`. The
-enthalpy :math:`H` is the total internal energy :math:`E_{tot}` with the inclusion of the volume
-work :math:`pV`. The indices correspond to the electronic (:math:`el`), translational
-(:math:`trans`), rotational (:math:`rot`), and vibrational (:math:`vib`) contributions to the total
-internal energy. The rotational and vibrational contributions to the gas phase free energy are
-typically modeled by an ideal gas. The vibrational contributions are treated in the harmonic
-approximation:
-
-.. math::
-
-	E_{vib}(T) = \sum_{k}^{modes} \left( \frac{\hbar\omega_k}{2} + \frac{\hbar\omega_k}{\text{exp}\left(\frac{\hbar\omega_k}{k_BT}\right)-1} \right)
-
-.. hint::
-
-   Experimental value: :math:`\Delta H_{sub}^{(298 K)} = 22.42` kcal\ |mult|\ mol\ :sup:`-1`
-
-
-1. Convert the Crystallographic Information File (``urea_113.cif``) into CRYSTAL 14 ``fort.34``
-   format.
-
-   .. admonition:: Technical procedure
-
-      The ``.cif`` file can be converted by small programs to generate the ``fort.34`` file, *e.g.*
-      via:
-
-      .. code-block:: none
-
-         cif2crystal urea_113
-
-   Note that the gas phase geometry will be automatically generated within a large unit cell
-   (minimum distance to image of 12 |angst|) and the crystal geometry includes all symmetry
-   transformations of the required space group.
-
-   .. hint:: 
-      
-      Remember to activate the ``py27`` environment to make ``cif2crystal`` work correctly.
-
-2. Calculate the electronic energies at the TPSS-D3\ :sup:`ATM`\ (BJ)/600 eV level. How large is the
-   London dispersion contribution to the lattice energy?
-
-   .. admonition:: Technical procedure
-
-      Fully optimized (TPSS-D3\ :sup:`ATM`\ (BJ)) geometries for the urea molecule and the urea
-      solid are available. Adjust the Brillouin sampling to a :math:`k` grid of approximately 1/35
-      Bohr\ :sup:`-1`. Use VASP 5.4 to calculate a TPSS-D3\ :sup:`ATM`\ (BJ)/600 eV single-point
-      energy for the gas and solid phase. The calculations can be done via the CRYSTAL 14 interface. 
-      Note that due to some internal restructuring for the VASP calculation, the interface broke. 
-      You can nevertheless obtain the correct energy using the command below to generate the vasp
-      input file, do the VASP calculation by simply typing in ``vasp`` and then collect the results 
-      by again typing the command below.
-
-      .. code-block:: none
-
-         crystal_interface < INPUT > crystal.out
-
-3. Calculate the free energy corrections at the semiempirical DFTB3-D3 level. Compare the
-   electronic energy of the tight-binding model to the DFT one.
-
-   .. admonition:: Technical procedure
-
-      a. Re-optimize the TPSS-D3\ :sup:`ATM`\ (BJ) geometries of both phases with the CRYSTAL 14
-         program and the DFTB3-D3 Hamiltonian. Modify the ``INPUT`` file for the solid to sample
-         the :math:`k`-space identical to 1. Start the program by:
-
-         .. code-block:: none
-
-            crystal_interface < INPUT > crystal.out
-
-      b. Calculate the phonon spectrum at the :math:`\Gamma`-point with identical setup at the
-         optimized geometry. In order to include low-lying (acoustic) modes of the solid, a
-         supercell has to be generated (you find proper placeholders in the ``INPUT`` file).
-         Increase the supercell until the energy contributions are converged within
-         0.1 kcal\ |mult|\ mol\ :sup:`-1`. The contributions can be taken from the output blocks
-         in the calculation output entitled ``HARMONIC VIBRATIONAL CONTRIBUTIONS`` and
-         ``THERMODYNAMIC FUNCTIONS``.
-
-4. Compare the calculated sublimation enthalpy with the experimental one. Explain why no thermal
-   effects are included in the DFT energy and how this energy could be improved. Which significant
-   approximations are applied in the overall model for the enthalpy correction?
