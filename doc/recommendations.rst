@@ -31,6 +31,6 @@ Further reading
 
 If this is your first time working with Linux or quantum chemistry software, fear not; we still have you covered. You can find additional resources in our quantum chemistry II script:
 
-- `Working on Linux <https://qc2-teaching.readthedocs.io/en/latest/intro.html>`_
-- `Introduction to Fortran <https://qc2-teaching.readthedocs.io/en/latest/programming.html>`_
-- `Software Recommendations <https://qc2-teaching.readthedocs.io/en/latest/recommendations.html#software-recommendations>`_
+- `Working on Linux <https://qc2-teaching.readthedocs.io/en/latest/setup-linux.html>`_
+- `Introduction to Fortran <https://qc2-teaching.readthedocs.io/en/latest/prog-fortran.html>`_
+- `Software Recommendations <https://qc2-teaching.readthedocs.io/en/latest/apps-recommendations.html#software-recommendations>`_

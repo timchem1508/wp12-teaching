@@ -50,7 +50,7 @@ working in the terminal. You can find further information in the `Ubuntu wiki <h
 
 To be able to use a program, the system needs to know where to find it.
 You can achieve this by modifying the ``PATH`` environment variable via the ``.bashrc`` in your ``/home/$USER/`` directory. 
-The ``.bashrc`` covers the main setup of the PSI4, VASP, CRYSTAL, and COSMO-RS software as well as the configuration of thread
+The ``.bashrc`` covers the main setup of the PSI4 and COSMO-RS software as well as the configuration of thread
 usage and memory limits so these programs run with a fixed number of CPU threads and enough stack space to avoid crashes.
 Additonally, for the usage of PSI4, the respective conda environment has to be activated.
 The ``.bashrc`` should look like the following and can also be found in the ``config`` directory in the WP12
@@ -132,7 +132,7 @@ GFN-xTB
 
 where ``<coord_input>`` is a valid ﬁle of ``TM`` or ``Xmol`` format.
 
-In exercise 2.3 you need to ﬁrst optimize a structure and then calculate the second derivatives
+In exercise 3 you need to ﬁrst optimize a structure and then calculate the second derivatives
 to get the vibrational contributions in the rigid-rotor-harmonic-oscillator model.
 
 You can do that, by using the following options:

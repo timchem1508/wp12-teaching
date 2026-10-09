@@ -39,7 +39,7 @@ Noncovalent Interactions
 Partitioning noncovalent interactions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. admonition:: Exercise 1.1
+.. admonition:: Exercise 1
 
    Partition the interactions of three weakly bound dimers (namely the water dimer, the
    argon dimer, and the uracil dimer) and identify the dominant binding motifs.
@@ -154,7 +154,7 @@ The SAPT ansatz gives the ﬁrst and second-order complexation energies based on
 Supermolecular approaches
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. admonition:: Exercise 1.2
+.. admonition:: Exercise 2
 
    Calculate reference binding energies for the water and the argon dimer using the provided relaxed geometries.
 
@@ -218,7 +218,7 @@ The following exponents have been optimized according to the different basis set
 Molecules in solution
 ~~~~~~~~~~~~~~~~~~~~~
 
-.. admonition:: Exercise 1.3
+.. admonition:: Exercise 3
 
    Calculate the equilibrium association free energy :math:`\Delta G_a` of a molecular "tweezer"
    with tetracyanoquinone (TCNQ) at room temperature solvated in **toluene**.
