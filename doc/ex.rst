@@ -31,8 +31,8 @@ Most of the other scripts give some general options if started via
 	Once this data has been reviewed by the tutors and no errors are found, you may begin the post-processing calculations and prepare the practice report.
 
 
-Noncovalent Interactions and Organic Solids
--------------------------------------------
+Noncovalent Interactions
+------------------------
 
 .. _Partitioning noncovalent interactions:
 
@@ -76,12 +76,77 @@ The SAPT ansatz gives the ﬁrst and second-order complexation energies based on
 2. Calculate the HF-SAPT2/aug-cc-pVQZ potential energy surface for the argon dimer. Discuss the different first and second order contributions at the different distances
    and plot the total electrostatic, exchange, induction, and dispersion contributions as well as the total SAPT2 interaction energy with respect to the
    Ar\ |mult| |mult| |mult|\ Ar distance.
-   What characteristic distance dependence do you see for the ﬁrst order exchange :math:`E^{(1)}_{exch}` and the second order dispersion :math:`E^{(2)}_{disp}`?
+   What characteristic distance dependence do you see for the ﬁrst order exchange :math:`E^{(1)}_{exch}` and the second order dispersion :math:`E^{(2)}_{disp}`? Approximate the exchange and dispersion contributions using suitable functions for short and long distances.
 
    .. admonition:: Technical procedure
 
-      The distance scan can easily be performed via an external bash script. 
-      To get their functional form, plot the distance dependence and ﬁt an appropriate function to the ﬁrst order exchange and second order dispersion contribution.
+      The distance scan can easily be performed via an external bash script given below.
+
+      .. code-block:: bash
+
+         #!/usr/bin/env bash
+
+         # name of the folder to collect all calculations in
+         calc_dir="ar_scan_sapt2"
+
+         # Check that Psi4 is available before anything else.
+         if ! command -v psi4 > /dev/null 2>&1; then
+             echo "Error: psi4 is not available."
+             exit 1
+         fi
+
+         # Create the main directory for the complete scan.
+         mkdir -p "$calc_dir"
+
+         # Generate distance array from 0.60 to 3.00 Å in steps of 0.05 Å.
+         # seq uses the form: seq start step end; -f "%.2f" formats to two decimals.
+         distances=($(seq -f "%.2f" 0.60 0.05 3.00))
+
+         # Add additional points at larger distances.
+         distances+=(4.00 5.00 6.00 8.00 10.00 15.00 20.00 30.00 35.00 40.00)
+
+         # Enter the main directory containing all calculations.
+         cd "$calc_dir"
+
+         # Run one independent calculation for each distance within a newly created subfolder.
+         for dist in "${distances[@]}"; do
+
+             # Create a separate directory for this specific distance.
+             mkdir -p "$dist"
+
+             # Write the Psi4 input file.
+             # $dist is replaced by the current Ar-Ar distance of the scan.
+             cat > "$dist/input.dat" << EOF
+         molecule argon_dimer {
+             0 1
+             Ar   0.000000   0.000000   $dist
+             --
+             0 1
+             Ar   0.000000   0.000000   0.000000
+
+             units angstrom
+             no_reorient
+             symmetry c1
+         }
+
+         set basis aug-cc-pVQZ
+
+         energy('sapt2')
+         EOF
+
+             echo "Running calculation at $dist Å"
+
+             # Enter the corresponding folder and run Psi4 there.
+             cd "$dist"
+             psi4 -i input.dat -n 8 --memory 8GB -o output.dat
+
+             # Return to the main scan directory for the next calculation.
+             cd ..
+
+         done
+
+      The calculated values can be obtained using the ``parse_output_scan_sapt2.py`` python script.
+      To get their functional form, plot the distance dependence and fit an appropriate function to the first order exchange and second order dispersion contribution. 
 
 
 .. _Supermolecular approaches:
