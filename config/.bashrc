@@ -10,12 +10,6 @@ export PSI_SCRATCH=$PSIS
 # make modules available
 . ${BASH_ENV} > /dev/null
 
-# VASP5.4
-export PATH=/home/abt-grimme/AK-bin/vasp/bin:$PATH
-
-# CRYSTAL14
-export PATH=/home/abt-grimme/crystal/14:$PATH
-
 # COSMORS
 export PATH=/opt/COSMOlogic/COSMOthermX19/COSMOtherm/BIN-LINUX/:$PATH
 
