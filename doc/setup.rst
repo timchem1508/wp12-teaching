@@ -11,32 +11,34 @@ as well as Quantum Chemistry programs that will be used in this practical course
 .. contents::
 
 
-Creating your working environment
+Adjusting Your Linux Environment
 ---------------------------------
 
 Program Packages
 ~~~~~~~~~~~~~~~~
 
-The following programs are going to be used:
+The following programs will be used:
 
-+--------------------+---------------------------------------------------+
-| program            | executable                                        |
-+====================+===================================================+
-| PSI4               | ``psi4``                                          |
-+--------------------+---------------------------------------------------+
-| TURBOMOLE 8.0      | ``ridft, ricc2``                                  |
-+--------------------+---------------------------------------------------+
-| COSMOtherm 19      | ``cosmosolv_prak`` (script that calls COSMOtherm) |
-+--------------------+---------------------------------------------------+
-| xTB 6.7.1          | ``xtb``                                           |
-+--------------------+---------------------------------------------------+
-| gCP 2.01           | ``gcp``                                           |
-+--------------------+---------------------------------------------------+
-| DFTD3              | ``dftd3``                                         |
-+--------------------+---------------------------------------------------+
+.. list-table::
+   :header-rows: 1
+   :widths: 40 60
 
-For the usage of these programs, you can take a look at the respective manuals or (in
-most cases) use the -h option.
+   * - Program
+     - Executable(s)
+   * - `PSI4 <https://psicode.org/>`_
+     - ``psi4``
+   * - `TURBOMOLE 8.0 <https://manual.turbomole.org/v8.0/>`_
+     - ``ridft``, ``ricc2``
+   * - COSMOtherm 19
+     - ``cosmosolv_prak`` (script that calls COSMOtherm)
+   * - `xTB 6.7.1 <https://github.com/grimme-lab/xtb>`_
+     - ``xtb``
+   * - `gCP 2.01 <https://www.chemie.uni-bonn.de/grimme/de/software/gcp/mangcp.pdf>`_
+     - ``gcp``
+   * - `DFTD3 <https://www.chemie.uni-bonn.de/grimme/de/software/dft-d3/get_dft-d3>`_
+     - ``dftd3``
+
+To use any of the programs/executables, take a look at the help output via ``executable -h`` for an overview of available options. Additionally, consult the respective program manuals for more details (e.g., input examples, implementation details, scientific references, etc.).
 
 .. hint::
    You can also find some additional information about TURBOMOLE in our `QC II script <https://qc2-teaching.readthedocs.io/en/latest/apps-setup.html#turbomole>`_.
@@ -44,50 +46,42 @@ most cases) use the -h option.
 General Setup
 ~~~~~~~~~~~~~
 
-The ﬁle ``.bashrc`` is a conﬁguration ﬁle loaded every time a terminal is opened. 
-The ``.bashrc`` is designed to generally set the PATH variable or add scripts that can facilitate
-working in the terminal. You can find further information in the `Ubuntu wiki <https://wiki.ubuntuusers.de/Bash/bashrc/>`_.
+The ``.bashrc`` file is a conﬁguration ﬁle loaded every time once a new terminal is opened (`Ubuntu wiki <https://wiki.ubuntuusers.de/Bash/bashrc/>`_.).
+To be able to use a program, the system needs to know where to find it. Instead of using an absolute path or navigating into a program directory every time,
+you can simply add the location where the executable resides to your ``PATH`` environment variable. Note that the ``.bashrc`` is always located in the ``/home/$USER/`` directory. 
+In our case, the ``.bashrc`` covers the main setup of the PSI4 and COSMO-RS software as well as the configuration of thread
+usage and memory limits such that the programs run with a fixed number of CPU threads and enough stack space to avoid potential crashes. 
+Additionally, PSI4 requires activation of a conda environment.
+Your ``.bashrc`` should look like the following. It can also be found in the ``config`` directory of the WP12
+`GitHub Repository <https://github.com/grimme-lab/wp12-teaching/tree/main/config>`_. Create this file if it does not exist in your home directory yet!
 
-To be able to use a program, the system needs to know where to find it.
-You can achieve this by modifying the ``PATH`` environment variable via the ``.bashrc`` in your ``/home/$USER/`` directory. 
-The ``.bashrc`` covers the main setup of the PSI4 and COSMO-RS software as well as the configuration of thread
-usage and memory limits so these programs run with a fixed number of CPU threads and enough stack space to avoid crashes.
-Additonally, for the usage of PSI4, the respective conda environment has to be activated.
-The ``.bashrc`` should look like the following and can also be found in the ``config`` directory in the WP12
-`GitHub Repository <https://github.com/grimme-lab/wp12-teaching/tree/main/config>`_
-(if it does not exist, create it):
+``.bashrc`` :
 
 .. literalinclude:: ../config/.bashrc
    :linenos:
 
-.. important:: Changes only apply to shells opened after changing your ``.bashrc``.
-
-If you want to apply the changes to your current shell, you
-need to run:
-
-.. code-block:: none
-
-   source ~/.bashrc
+.. important:: Changes to the ``.bashrc`` do not apply to any open terminal sessions. After changing the ``.bashrc``, simply run ``source ~/.bashrc`` in your current terminal session or reopen a new terminal window for changes to take effect.
 
 .. _COSMOtherm:
 
 COSMOtherm
 ~~~~~~~~~~
 
-The ``cosmosolv`` script needs the ``.cosmothermrc`` ﬁle in which parameters for the
-solvents are speciﬁed. The ``.cosmothermrc`` you will need is as follows:
+The ``cosmosolv`` script needs a ``.cosmothermrc`` ﬁle in your home directory, in which the solvent parameters (among other settings) are speciﬁed. 
+
+``.cosmothermrc`` :
 
 .. literalinclude:: ../config/.cosmothermrc
    :linenos:
 
-Create this ﬁle in your /home/$USER/ directory.
+Note the reference to the ``toluene.cosmo`` file in line 3, specifying solvation with toluene.
 
-.. hint:: This is a general input file for the COSMOtherm program. The ``cosmosolv`` copies this file as an input for your calculation. If you are interested, you can find further information about COSMOtherm input files in the COSMOtherm manual.
+.. hint:: This is a general input file for the COSMOtherm program. ``cosmosolv`` uses this file as an input for your calculation. If you are interested, you can find further information about COSMOtherm input in the COSMOtherm manual.
 
-GFN-xTB, gCP, TURBOMOLE, and DFTD3
+xTB, gCP, TURBOMOLE, and DFTD3
 ~~~~~~~
 
-GFN-xTB, gCP, TURBOMOLE, and DFTD3 can be made available via the following commands.
+xTB, gCP, TURBOMOLE, and DFTD3 can be made available via the following commands.
 
 .. code-block:: none
 
@@ -105,42 +99,48 @@ GFN-xTB, gCP, TURBOMOLE, and DFTD3 can be made available via the following comma
 
    module load dftd3
 
-Please make sure to have these lines added to your ``.bashrc`` :
+Please make sure to have these lines added to your ``.bashrc`` to ensure ``xTB`` runs with sufficient resources:
 
 .. code-block:: none
 
-   export OMP_NUM_THREADS=4
-   export MKL_NUM_THREADS=4
+   export OMP_NUM_THREADS=8
+   export MKL_NUM_THREADS=8
    ulimit -s unlimited
    export OMP_STACKSIZE=1000m
 
-As mentioned above, these lines make the programs use a set number of CPU threads and give them plenty of memory so they run smoothly without running out of stack space.
-
-Specific usage instructions
+Specific Usage Instructions
 ---------------------------
 
-.. _GFN-xTB:
+.. _GFN2-xTB:
 
-GFN-xTB
+GFN2-xTB
 ~~~~~~~
 
-``GFN-xTB`` can be called by:
+A ``GFN2-xTB`` calculation can be initiated via
 
 .. code-block:: none
 
-   xtb <coord_input> [options]
+   xtb --gfn 2 <coordinates_input> [options]  >  xtb.out
 
-where ``<coord_input>`` is a valid ﬁle of ``TM`` or ``Xmol`` format.
+where ``<coordinates_input>`` is a valid ``coord`` ﬁle as used with TURBOMOLE or a file in typical ``.xyz`` format, and ``[options]`` are additional command-line options:
 
-In exercise 3 you need to ﬁrst optimize a structure and then calculate the second derivatives
-to get the vibrational contributions in the rigid-rotor-harmonic-oscillator model.
 
-You can do that, by using the following options:
- | ``--opt`` : structure optimization at the GFN2-xTB level,
- | ``--hess`` : compute Hessian at the GFN2-xTB level (second derivatives) or
- | ``--ohess`` : do both with one command.
+For instance, in exercise 3, you will have to reoptimize the geometry of a given molecule followed by a calculation of the geometric (nuclear) Hessian,
+which provides access to molecular vibrational information as used for correcting electronic energies to free energies within the 
+modified rigid-rotor harmonic-oscillator model (mRRHO, `Grimme, Chem. Eur. J. 2012, 18, 9955–9964 <https://doi.org/10.1002/chem.201200497>`_).
 
-Please note that after the optimization the input structure, e.g., the coord ﬁle is not
-overwritten and will be on the ﬁle ``xtbopt.coord``. You will have to use this ﬁle for the
-calculation of the Hessian. If you encounter significant imaginary frequencies, try to optimize the created xtbhess file e.g. ``xtbhess.coord`` and use the optimized structure for another Hessian calculation.
+To do that, additional command-line options may be specified:
+ | ``--opt`` : structure optimization
+ | ``--hess`` : compute Hessian (second derivatives w.r.t. nuclear coordinates)
+ | ``--ohess`` : do both with one option
 
+Please note that xTB does not overwrite your initial input structure after optimization, but rather writes the optimized coordinates to the ``xtbopt.coord`` file. Use this ﬁle for the
+subsequent Hessian calculation and **not** your original input file, as this would lead to imaginary frequencies (negative wave numbers).
+
+.. important:: Do **not** use structures with two or more imaginary frequencies for any thermochemical evaluations. Recall from QC1 (PES lecture) that local minima **must** always have zero imaginary frequencies, whereas only a single imaginary frequency is allowed for transition states.
+
+If you encounter any unwanted imaginary frequencies, try optimizing the ``xtbhess.coord`` file, 
+which is a structure that is dislocated along all significant imaginary eigenmodes. 
+Don't forget to validate the resulting optimized geometry with another Hessian calculation! 
+
+For more details on xTB, refer to the official `xTB documentation <https://xtb-docs.readthedocs.io/en/latest/index.html>`_.

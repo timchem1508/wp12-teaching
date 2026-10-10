@@ -14,7 +14,7 @@ export PSI_SCRATCH=$PSIS
 export PATH=/opt/COSMOlogic/COSMOthermX19/COSMOtherm/BIN-LINUX/:$PATH
 
 # Set thread counts and use a larger stack
-export OMP_NUM_THREADS=4
-export MKL_NUM_THREADS=4
+export OMP_NUM_THREADS=8
+export MKL_NUM_THREADS=8
 ulimit -s unlimited
 export OMP_STACKSIZE=1000m

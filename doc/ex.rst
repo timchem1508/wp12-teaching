@@ -51,7 +51,7 @@ The SAPT ansatz gives the ﬁrst and second-order complexation energies based on
 
 .. math::
 
-   E_{SAPT} = E_{pol} + E_{exch} + E_{ind,resp} + E_{exch-ind,resp} + E_{disp} + E_{exch-disp}
+   E_{\mathrm{SAPT}} = E_{\mathrm{pol}} + E_{\mathrm{exch}} + E_{\mathrm{ind,resp}} + E_{\mathrm{exch-ind,resp}} + E_{\mathrm{disp}} + E_{\mathrm{exch-disp}}
 
 1. Calculate each system's HF-SAPT/aug-cc-pVQZ and AC-PBE0-SAPT/aug-cc-pVQZ (second order) binding energy at the equilibrium distance. 
    For the DFT calculation, you need to asymptotically correct the PBE0 functional shifting the ionization potential to a reference value. 
@@ -76,7 +76,7 @@ The SAPT ansatz gives the ﬁrst and second-order complexation energies based on
 2. Calculate the HF-SAPT2/aug-cc-pVQZ potential energy surface for the argon dimer. Discuss the different first and second order contributions at the different distances
    and plot the total electrostatic, exchange, induction, and dispersion contributions as well as the total SAPT2 interaction energy with respect to the
    Ar\ |mult| |mult| |mult|\ Ar distance.
-   What characteristic distance dependence do you see for the ﬁrst order exchange :math:`E^{(1)}_{exch}` and the second order dispersion :math:`E^{(2)}_{disp}`? Approximate the exchange and dispersion contributions using suitable functions for short and long distances.
+   What characteristic distance dependence do you see for the ﬁrst order exchange :math:`E^{(1)}_{\mathrm{exch}}` and the second order dispersion :math:`E^{(2)}_{\mathrm{disp}}`? Approximate the exchange and dispersion contributions using suitable functions for short and long distances.
 
    .. admonition:: Technical procedure
 
@@ -161,22 +161,22 @@ Supermolecular approaches
 **Approach**
 
 The reference energies are calculated in the supermolecular approach with TURBOMOLE. The binding
-energy of a two-fragment system :math:`E_{bind}` is given by the energy differences between the
+energy of a two-fragment system :math:`E_{\mathrm{bind}}` is given by the energy differences between the
 single fragments and the complete system.
 
 .. math::
 
-	E_{bind} = E^{AB} - E^{A} - E^{B}
+	E_{\mathrm{bind}} = E^{\mathrm{AB}} - E^{\mathrm{A}} - E^{\mathrm{B}}
 
 The extrapolation to the basis set limit can be done by assuming a certain functional form.
 
 .. math::
 
-	E_{SCF}^{(X)} = E_{SCF}^{(\infty)} + A \cdot e^{-\alpha \sqrt{X}}
+	E_{\mathrm{SCF}}^{(X)} = E_{\mathrm{SCF}}^{(\infty)} + A \cdot e^{-\alpha \sqrt{X}}
 
 .. math::
 
-	E_{corr}^{(X)} = E_{corr}^{(\infty)} + A \cdot X^{-\beta}
+	E_{\mathrm{corr}}^{(X)} = E_{\mathrm{corr}}^{(\infty)} + A \cdot X^{-\beta}
 
 The following exponents have been optimized according to the different basis sets.
 
@@ -220,26 +220,26 @@ Molecules in solution
 
 .. admonition:: Exercise 3
 
-   Calculate the equilibrium association free energy :math:`\Delta G_a` of a molecular "tweezer"
+   Calculate the equilibrium association free energy :math:`\Delta G_{\mathrm{a}}` of a molecular "tweezer"
    with tetracyanoquinone (TCNQ) at room temperature solvated in **toluene**.
 
 **Approach**
 
 The host-guest system is again treated in a supermolecular approach. The association free energy
-:math:`\Delta G_a` is given by
+:math:`\Delta G_{\mathrm{a}}` is given by
 
 .. math::
 
-   \Delta G_{a} = \Delta E + \Delta G_{RRHO}^{T} + \Delta \delta G_{solv}^{T}(X)
+   \Delta G_{\mathrm{a}} = \Delta E + \Delta G_{\mathrm{mRRHO}}^{T} + \Delta \delta G_{\mathrm{solv}}^{T}(X)
 
 with the electronic gas phase association energy :math:`\Delta E`, a correction to free energies in
-the rigid rotor harmonic oscillator approximation :math:`\Delta G_{RRHO}^{T}`, and a correction to
-the solvation free energy :math:`\Delta \delta G_{solv}^{T}(X)`. These contributions depend
+the modified rigid rotor harmonic oscillator (mRRHO) approximation :math:`\Delta G_{\mathrm{mRRHO}}^{T}`, and a correction to
+the solvation free energy :math:`\Delta \delta G_{\mathrm{solv}}^{T}(X)`. These contributions depend
 explicitly on the temperature and solvent.
 
 .. hint::
 
-   Experimental value: :math:`\Delta G_{a}^{(298 K)} = -4.50` kcal\ |mult|\ mol\ :sup:`-1`
+   Experimental value: :math:`\Delta G_{\mathrm{a}}^{(298\,\mathrm{K})} = -4.50` kcal\ |mult|\ mol\ :sup:`-1`
 
 1. Calculate the electronic energy contribution with the (two- and three-body dispersion) corrected
    meta-GGA density functional TPSS-D3\ :sup:`ATM`\ (BJ) in the def-TZVP single particle basis set.
@@ -252,13 +252,13 @@ explicitly on the temperature and solvent.
       (Attention: ``cefine`` sets a dispersion correction by default. Make sure that you don't
       double-count it.) The counterpoise correction can be calculated with the ``gcp`` program. Use the ``-h`` (help) option of dftd3 and gcp to figure out the desired options. Make sure you are using the correct gcp version (v2.01), if not try loading the program with ``module load gcp/2.01`` 
 
-2. Calculate the vibrational contributions in the rigid rotor harmonic oscillator model at the
+2. Calculate the vibrational contributions in the modified rigid rotor harmonic oscillator (mRRHO) model at the
    semiempirical GFN2-xTB level.
 
    .. admonition:: Technical procedure
 
       First, re-optimize the TPSS-D3 geometries at the GFN2-xTB level. Then calculate the second
-      derivatives and read the thermodynamic functions printout in the RRHO approximation of the
+      derivatives and read the thermodynamic functions printout in the mRRHO approximation of the
       GFN2-xTB program. Further information is given in Section :ref:`GFN-xTB`.
 
 3. Compute the solvent corrections with COSMO-RS.

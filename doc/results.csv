@@ -97,19 +97,19 @@ Host,,
 SP energy (TPSS/def-TZVP),,Hartree
 Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
 CP correction energy (gcp),,Hartree
-delta G vibrational (RRHO: GFN-xTB),,Hartree
+delta G vibrational (mRRHO: GFN-xTB),,Hartree
 COSMO-RS solvation energy,,Hartree
 ,,
 Guest,,
 SP energy (TPSS/def-TZVP),,Hartree
 Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
 CP correction energy (gcp),,Hartree
-delta G vibrational (RRHO: GFN-xTB),,Hartree
+delta G vibrational (mRRHO: GFN-xTB),,Hartree
 COSMO-RS solvation energy,,Hartree
 ,,
 Complex,,
 SP energy (TPSS/def-TZVP),,Hartree
 Dispersion correction energy (DFTD3-BJ+ABC),,Hartree
 CP correction energy (gcp),,Hartree
-delta G vibrational (RRHO: GFN-xTB),,Hartree
+delta G vibrational (mRRHO: GFN-xTB),,Hartree
 COSMO-RS solvation energy,,Hartree
